@@ -1,0 +1,10 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<footer>
+            <div>
+                <span>Тестовое приложение JAVA EE</span>
+                <span><a target="_blanc" href="http://onedeveloper.ru/search?w=Java">Уроки по JavaEE</a></span>
+            </div>
+        </footer>
+    </body>
+</html>
