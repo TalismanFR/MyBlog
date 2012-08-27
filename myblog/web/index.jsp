@@ -17,30 +17,19 @@
                     
                 </ul>
             </aside>
-            <section>
-                <article>
-                    <h1>Статья</h1>
-                    <div class="text-article">
-                        Текст статьи
-                    </div>
-                    <div class="fotter-article">
-                        <span class="autor">Автор статьи: <a href="#">автор</a></span>
-                        <span class="read"><a href="javascript:void(0);">Читать...</a></span>
-                        <span class="date-article">Дата статьи: 20.12.2012</span>
-                    </div>
-                </article>
-                <article>
-                    <h1>Статья</h1>
-                    <div class="text-article">
-                        Текст статьи
-                    </div>
-                    <div class="fotter-article">
-                        <span class="autor">Автор статьи: <a href="#">автор</a></span>
-                        <span class="read"><a href="javascript:void(0);">Читать...</a></span>
-                        <span class="date-article">Дата статьи: 20.12.2012</span>
-                        
-                    </div>
-                </article>
+            <section>          
+                    <c:forEach var="article" items="${articles}">
+                        <article>
+			<h1>${article.title}</h1>
+                        <div class="text-article">
+                        ${fn:substring(article.text,0,300)} ...
+                        </div>
+                        <div class="fotter-article">
+                        <span class="read"><a href="article?id=${article.id}">Читать...</a></span>
+                        <span class="date-article">Дата статьи: ${article.date}</span>
+                        </div>
+                        </article>
+		    </c:forEach>
             </section>
         </div>
         
