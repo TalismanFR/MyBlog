@@ -4,7 +4,9 @@
  */
 package controller;
 
+import entity.Articles;
 import java.io.IOException;
+import java.util.Enumeration;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +36,18 @@ public class web_controller extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String userPath=request.getServletPath();
         if ("/article".equals(userPath)){
-            // TODO: обработка запроса статьи
+            String id=null;
+            Enumeration<String> params = request.getParameterNames();
+            while (params.hasMoreElements()) {
+                String param = params.nextElement();
+                id="id".equals(param)?request.getParameter(param):id;
+            }
+            try{
+                Articles article = articlesFacade.find(Integer.parseInt(id));
+                request.setAttribute("article", article);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }else
         if ("/registration".equals(userPath)){
             //TODO: обработка запроса регистрации

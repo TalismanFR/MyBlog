@@ -17,7 +17,7 @@
                     
                 </ul>
             </aside>
-            <section>          
+            <section>   
                     <c:forEach var="article" items="${articles}">
                         <article>
 			<h1>${article.title}</h1>

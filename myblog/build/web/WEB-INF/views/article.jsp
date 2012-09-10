@@ -17,15 +17,15 @@
                     
                 </ul>
             </aside>
+            ${param.name}
             <section>
                 <article>
-                    <h1>Статья</h1>
+                    <h1>${article.title}</h1>
                     <div class="text-article">
-                        Текст статьи
+                        ${article.text}
                     </div>
                     <div class="fotter-article">
-                        <span class="autor">Автор статьи: <a href="#">автор</a></span>
-                        <span class="date-article">Дата статьи: 20.12.2012</span>
+                        <span class="date-article">Дата статьи: ${article.date}</span>
                     </div>
                 </article>
             </section>
