@@ -6,7 +6,13 @@ package controller;
 
 import entity.Articles;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import session.ArticlesFacade;
+import session.UsersManager;
 
 /**
  *
@@ -25,6 +32,9 @@ public class web_controller extends HttpServlet {
     @EJB
     ArticlesFacade articlesFacade;
 
+    @EJB
+    UsersManager userManager;
+    
     @Override
     public void init() throws ServletException {
         getServletContext().setAttribute("articles", articlesFacade.findAll());
@@ -50,7 +60,28 @@ public class web_controller extends HttpServlet {
             }
         }else
         if ("/registration".equals(userPath)){
-            //TODO: обработка запроса регистрации
+            String login=null,pass=null,pass2=null;
+            HashMap<String, String[]> contacts =new HashMap<String, String[]>();
+            Enumeration<String> parameters = request.getParameterNames();
+            while (parameters.hasMoreElements()) {
+                String parameter = parameters.nextElement();
+                if (parameter.equals("login")){
+                    login=request.getParameter(parameter);
+                }else
+                if (parameter.equals("password")){
+                    pass=request.getParameter(parameter);
+                }else
+                if (parameter.equals("password2")){
+                    pass2=request.getParameter(parameter);
+                }else{
+                    contacts.put(parameter, request.getParameterValues(parameter));
+                }
+            }
+            Integer codeOperation=userManager.addUser(login, pass2, pass2, contacts);
+            if (codeOperation!=0)
+            {request.setAttribute("notif", "Код завершения операции: "+codeOperation);}
+            else
+            {request.setAttribute("notif", "Пользователь "+login+" успешно создан!");}
         }
         
         request.getRequestDispatcher("/WEB-INF/views"+userPath+".jsp").forward(request, response);

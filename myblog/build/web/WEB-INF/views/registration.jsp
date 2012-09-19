@@ -1,7 +1,7 @@
 <%-- 
     Document   : registration
     Created on : 07.08.2012, 23:23:25
-    Author     : sergey
+    Author     : Egorov A.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,6 +17,11 @@
                 <article>
                     <h1>Регистрация</h1>
                     <div class="text-article">
+                        <c:if test="${notif ne null}">
+                             <div class="notif">
+                                 <span>${notif}</span> 
+                             </div>
+                        </c:if>
                         <form method="POST" action="registration">
                         <p>
                             <label for="login">Логин</label>
