@@ -10,8 +10,35 @@
             <description>Настройки колонтитулов</description>
             <url-pattern>/WEB-INF/views/*</url-pattern>
             <url-pattern>/index.jsp</url-pattern>
+            <url-pattern>/WEB-INF/private/*</url-pattern>
             <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>
     </jsp-config>
+    <security-constraint>
+        <display-name>private_zone</display-name>
+        <web-resource-collection>
+            <web-resource-name>private articles</web-resource-name>
+            <description/>
+            <url-pattern>/private/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>private</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>JDBCRealmMyblog</realm-name>
+        <form-login-config>
+            <form-login-page>/WEB-INF/private/login.jsp</form-login-page>
+            <form-error-page>/WEB-INF/private/error.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>private</role-name>
+    </security-role>
 </web-app>

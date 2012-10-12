@@ -8,7 +8,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.3.2.v20111125-r10461", date="2012-09-10T22:10:57")
+@Generated(value="EclipseLink-2.3.2.v20111125-r10461", date="2012-10-12T18:54:25")
 @StaticMetamodel(Articles.class)
 public class Articles_ { 
 
